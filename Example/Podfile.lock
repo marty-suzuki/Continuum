@@ -1,0 +1,16 @@
+PODS:
+  - Continuum (0.1.0)
+
+DEPENDENCIES:
+  - Continuum (from `../`)
+
+EXTERNAL SOURCES:
+  Continuum:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Continuum: e0599506966e6fd4ae6a76458a43f3711b9eab8e
+
+PODFILE CHECKSUM: deaf72ef75c6b582e95628803ecc2aadef262590
+
+COCOAPODS: 1.3.0

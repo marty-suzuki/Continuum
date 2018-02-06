@@ -1,0 +1,575 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E01E67CC5BD8523F6309B410194A7AF /* Wrappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBAF92DEBD80909139E8F353223F9D85 /* Wrappable.swift */; };
+		7235F933E51ED2058D2076AFCDE2D20F /* Pods-ContinuumSample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDF908B4E1AAFB3C6C9B6329290D09E /* Pods-ContinuumSample-dummy.m */; };
+		743166C0F57D5B404C5BFD219F88D464 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		88ECD3E04FBD0F0504A77D55219EF652 /* Continuum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3369DC0B9BF930C1030216ED76CCB393 /* Continuum.swift */; };
+		93BB4D692571AD5C865E1D6C5F88C4FA /* AnyKeyPath.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683CCBA0660CA904AD462DB146FADCB3 /* AnyKeyPath.extension.swift */; };
+		D320E7E2BD3191D2760657FBDAE8BF6B /* Continuum-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A63932C57CA8424FD65C615446745BBD /* Continuum-dummy.m */; };
+		DD2E40F00CC01AC261A4A03D2827B060 /* Continuum-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 519A77AD39E36FFE9FA0B7E23FA84351 /* Continuum-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E2BD40180EAEDF8FE11548EAAD0F28F0 /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF024D65229BA535E213B839C992D00 /* PThreadMutex.swift */; };
+		EB71AA5DE2A5A5CFD5527CD917404A10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		FA46FDA855243A07B38EAE054F98D65C /* Pods-ContinuumSample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A50721901352C5903E6D52F37E31C249 /* Pods-ContinuumSample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FC6EF868F6AB56609C6E700FC32DF8A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5FF9A7D5C08B6A3775A93D0DE928A87F;
+			remoteInfo = Continuum;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1DF024D65229BA535E213B839C992D00 /* PThreadMutex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
+		2FAB1941A561C07D0E703C37132B7E66 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3369DC0B9BF930C1030216ED76CCB393 /* Continuum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Continuum.swift; path = Continuum/Continuum.swift; sourceTree = "<group>"; };
+		347D2184E29E6F1C9F1D781E94D570D5 /* Pods-ContinuumSample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ContinuumSample.modulemap"; sourceTree = "<group>"; };
+		3BE67F702E941C08858723CCF5FEB851 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		451ADF51A04F60EE52436BE8E6E1B161 /* Pods-ContinuumSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ContinuumSample.debug.xcconfig"; sourceTree = "<group>"; };
+		519A77AD39E36FFE9FA0B7E23FA84351 /* Continuum-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Continuum-umbrella.h"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6737FCC4A5034EDD7A5682AB5FD3B693 /* Continuum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Continuum.framework; path = Continuum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		683CCBA0660CA904AD462DB146FADCB3 /* AnyKeyPath.extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnyKeyPath.extension.swift; sourceTree = "<group>"; };
+		7D8F21ACE5B1ABBD1FEB2A5F598BE82F /* Pods-ContinuumSample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ContinuumSample-resources.sh"; sourceTree = "<group>"; };
+		830E8940BFCC6187EF534516EA39B6A8 /* Continuum.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Continuum.modulemap; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		954CD81546F562DD4A4988FC6505388D /* Pods-ContinuumSample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ContinuumSample-acknowledgements.plist"; sourceTree = "<group>"; };
+		9BDF908B4E1AAFB3C6C9B6329290D09E /* Pods-ContinuumSample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ContinuumSample-dummy.m"; sourceTree = "<group>"; };
+		9C15908990F3C299B6647E6976B97D89 /* Pods-ContinuumSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ContinuumSample.release.xcconfig"; sourceTree = "<group>"; };
+		A50721901352C5903E6D52F37E31C249 /* Pods-ContinuumSample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ContinuumSample-umbrella.h"; sourceTree = "<group>"; };
+		A63932C57CA8424FD65C615446745BBD /* Continuum-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Continuum-dummy.m"; sourceTree = "<group>"; };
+		CAE479E8B4FBB0F43520A1B413FFE06B /* Pods_ContinuumSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ContinuumSample.framework; path = "Pods-ContinuumSample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBF717F20998B6C0CE451509B6B47E8A /* Pods-ContinuumSample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ContinuumSample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D32B4CB57CE3C49750F51182D02C4E2B /* Continuum-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Continuum-prefix.pch"; sourceTree = "<group>"; };
+		E6BC95705D67127DE2EEA6E829ABDA6D /* Continuum.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Continuum.xcconfig; sourceTree = "<group>"; };
+		F795D588535533FAA3710FE85D11448B /* Pods-ContinuumSample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ContinuumSample-frameworks.sh"; sourceTree = "<group>"; };
+		FBAF92DEBD80909139E8F353223F9D85 /* Wrappable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Wrappable.swift; path = Continuum/Wrappable.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F1A09F2FE40E3AAC0D42D7F6AC6C2ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB71AA5DE2A5A5CFD5527CD917404A10 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D970FA4D77AF9F528E935AA2B5FA1601 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				743166C0F57D5B404C5BFD219F88D464 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		014007E6D0D235F15BBB0B617C570A14 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				683CCBA0660CA904AD462DB146FADCB3 /* AnyKeyPath.extension.swift */,
+				1DF024D65229BA535E213B839C992D00 /* PThreadMutex.swift */,
+			);
+			name = Internal;
+			path = Continuum/Internal;
+			sourceTree = "<group>";
+		};
+		44B6ABECE92D65033087497A5866F991 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8BA788036989F35BA172F4FD1749DC08 /* Pods-ContinuumSample */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				9D804E5E0891C2E1E03935BFCDB5AB9F /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				D2AA6F859278D50E333AA81A74C17857 /* Products */,
+				44B6ABECE92D65033087497A5866F991 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		859889794F8CF46EB9225857A0CCD752 /* Continuum */ = {
+			isa = PBXGroup;
+			children = (
+				3369DC0B9BF930C1030216ED76CCB393 /* Continuum.swift */,
+				FBAF92DEBD80909139E8F353223F9D85 /* Wrappable.swift */,
+				014007E6D0D235F15BBB0B617C570A14 /* Internal */,
+				CBD528BB8AE1796695188A78496CE0A4 /* Support Files */,
+			);
+			name = Continuum;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		8BA788036989F35BA172F4FD1749DC08 /* Pods-ContinuumSample */ = {
+			isa = PBXGroup;
+			children = (
+				2FAB1941A561C07D0E703C37132B7E66 /* Info.plist */,
+				347D2184E29E6F1C9F1D781E94D570D5 /* Pods-ContinuumSample.modulemap */,
+				CBF717F20998B6C0CE451509B6B47E8A /* Pods-ContinuumSample-acknowledgements.markdown */,
+				954CD81546F562DD4A4988FC6505388D /* Pods-ContinuumSample-acknowledgements.plist */,
+				9BDF908B4E1AAFB3C6C9B6329290D09E /* Pods-ContinuumSample-dummy.m */,
+				F795D588535533FAA3710FE85D11448B /* Pods-ContinuumSample-frameworks.sh */,
+				7D8F21ACE5B1ABBD1FEB2A5F598BE82F /* Pods-ContinuumSample-resources.sh */,
+				A50721901352C5903E6D52F37E31C249 /* Pods-ContinuumSample-umbrella.h */,
+				451ADF51A04F60EE52436BE8E6E1B161 /* Pods-ContinuumSample.debug.xcconfig */,
+				9C15908990F3C299B6647E6976B97D89 /* Pods-ContinuumSample.release.xcconfig */,
+			);
+			name = "Pods-ContinuumSample";
+			path = "Target Support Files/Pods-ContinuumSample";
+			sourceTree = "<group>";
+		};
+		9D804E5E0891C2E1E03935BFCDB5AB9F /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				859889794F8CF46EB9225857A0CCD752 /* Continuum */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBD528BB8AE1796695188A78496CE0A4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				830E8940BFCC6187EF534516EA39B6A8 /* Continuum.modulemap */,
+				E6BC95705D67127DE2EEA6E829ABDA6D /* Continuum.xcconfig */,
+				A63932C57CA8424FD65C615446745BBD /* Continuum-dummy.m */,
+				D32B4CB57CE3C49750F51182D02C4E2B /* Continuum-prefix.pch */,
+				519A77AD39E36FFE9FA0B7E23FA84351 /* Continuum-umbrella.h */,
+				3BE67F702E941C08858723CCF5FEB851 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Continuum";
+			sourceTree = "<group>";
+		};
+		D2AA6F859278D50E333AA81A74C17857 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6737FCC4A5034EDD7A5682AB5FD3B693 /* Continuum.framework */,
+				CAE479E8B4FBB0F43520A1B413FFE06B /* Pods_ContinuumSample.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		54033D5F381CD0CCBD2AD690D5A0FFA0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA46FDA855243A07B38EAE054F98D65C /* Pods-ContinuumSample-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4A49CA3DBB4E1EE436A3E4D4572F9DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD2E40F00CC01AC261A4A03D2827B060 /* Continuum-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		04649C7DCEF2DB89D90DBB9DE53E6E15 /* Pods-ContinuumSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9B6A4F0F4E7A6ED808A3C6E46A5C0820 /* Build configuration list for PBXNativeTarget "Pods-ContinuumSample" */;
+			buildPhases = (
+				72800F6BA1CE2F89075F4BE55333BD46 /* Sources */,
+				0F1A09F2FE40E3AAC0D42D7F6AC6C2ED /* Frameworks */,
+				54033D5F381CD0CCBD2AD690D5A0FFA0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0CCFCCE7DE26D2ABEC8D559B871A2183 /* PBXTargetDependency */,
+			);
+			name = "Pods-ContinuumSample";
+			productName = "Pods-ContinuumSample";
+			productReference = CAE479E8B4FBB0F43520A1B413FFE06B /* Pods_ContinuumSample.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5FF9A7D5C08B6A3775A93D0DE928A87F /* Continuum */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75D85947604337EBC588EF49656441B4 /* Build configuration list for PBXNativeTarget "Continuum" */;
+			buildPhases = (
+				329C7DB9FF262B9743F267FECCF23131 /* Sources */,
+				D970FA4D77AF9F528E935AA2B5FA1601 /* Frameworks */,
+				E4A49CA3DBB4E1EE436A3E4D4572F9DB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Continuum;
+			productName = Continuum;
+			productReference = 6737FCC4A5034EDD7A5682AB5FD3B693 /* Continuum.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = D2AA6F859278D50E333AA81A74C17857 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5FF9A7D5C08B6A3775A93D0DE928A87F /* Continuum */,
+				04649C7DCEF2DB89D90DBB9DE53E6E15 /* Pods-ContinuumSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		329C7DB9FF262B9743F267FECCF23131 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93BB4D692571AD5C865E1D6C5F88C4FA /* AnyKeyPath.extension.swift in Sources */,
+				D320E7E2BD3191D2760657FBDAE8BF6B /* Continuum-dummy.m in Sources */,
+				88ECD3E04FBD0F0504A77D55219EF652 /* Continuum.swift in Sources */,
+				E2BD40180EAEDF8FE11548EAAD0F28F0 /* PThreadMutex.swift in Sources */,
+				2E01E67CC5BD8523F6309B410194A7AF /* Wrappable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72800F6BA1CE2F89075F4BE55333BD46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7235F933E51ED2058D2076AFCDE2D20F /* Pods-ContinuumSample-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0CCFCCE7DE26D2ABEC8D559B871A2183 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Continuum;
+			target = 5FF9A7D5C08B6A3775A93D0DE928A87F /* Continuum */;
+			targetProxy = FC6EF868F6AB56609C6E700FC32DF8A9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		10417A3AF6561C8CB7EA5A21C7FADF3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6BC95705D67127DE2EEA6E829ABDA6D /* Continuum.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Continuum/Continuum-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Continuum/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Continuum/Continuum.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Continuum;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		12F71D70364ECDE438A12115C3F3185F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6BC95705D67127DE2EEA6E829ABDA6D /* Continuum.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Continuum/Continuum-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Continuum/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Continuum/Continuum.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Continuum;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		13482520F13BB06A928589BE886A6B5C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 451ADF51A04F60EE52436BE8E6E1B161 /* Pods-ContinuumSample.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ContinuumSample/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ContinuumSample/Pods-ContinuumSample.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ContinuumSample;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9BFC9E4A7AAD7A607ACE06D95A401A5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C03B8870130C98D1B02B59D003687524 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1F6783568C99F9A3A5300730FDED6CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C15908990F3C299B6647E6976B97D89 /* Pods-ContinuumSample.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ContinuumSample/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ContinuumSample/Pods-ContinuumSample.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ContinuumSample;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BFC9E4A7AAD7A607ACE06D95A401A5A /* Debug */,
+				C03B8870130C98D1B02B59D003687524 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		75D85947604337EBC588EF49656441B4 /* Build configuration list for PBXNativeTarget "Continuum" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12F71D70364ECDE438A12115C3F3185F /* Debug */,
+				10417A3AF6561C8CB7EA5A21C7FADF3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9B6A4F0F4E7A6ED808A3C6E46A5C0820 /* Build configuration list for PBXNativeTarget "Pods-ContinuumSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13482520F13BB06A928589BE886A6B5C /* Debug */,
+				D1F6783568C99F9A3A5300730FDED6CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
