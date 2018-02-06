@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3700DEE0202A17630010408B /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700DEDF202A17630010408B /* PThreadMutex.swift */; };
 		379BCD192029FF9600450632 /* Continuum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379BCD0F2029FF9600450632 /* Continuum.framework */; };
 		379BCD1E2029FF9600450632 /* ContinuumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BCD1D2029FF9600450632 /* ContinuumTests.swift */; };
 		379BCD202029FF9600450632 /* Continuum.h in Headers */ = {isa = PBXBuildFile; fileRef = 379BCD122029FF9600450632 /* Continuum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		379BCD2B202A00AE00450632 /* Wrappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BCD2A202A00AE00450632 /* Wrappable.swift */; };
+		379BCD2D202A00F700450632 /* AnyKeyPath.extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BCD2C202A00F700450632 /* AnyKeyPath.extension.swift */; };
+		379BCD2F202A016600450632 /* Continuum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BCD2E202A016600450632 /* Continuum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +27,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3700DEDF202A17630010408B /* PThreadMutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
 		379BCD0F2029FF9600450632 /* Continuum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Continuum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		379BCD122029FF9600450632 /* Continuum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Continuum.h; sourceTree = "<group>"; };
 		379BCD132029FF9600450632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379BCD182029FF9600450632 /* ContinuumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContinuumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		379BCD1D2029FF9600450632 /* ContinuumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuumTests.swift; sourceTree = "<group>"; };
 		379BCD1F2029FF9600450632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		379BCD2A202A00AE00450632 /* Wrappable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wrappable.swift; sourceTree = "<group>"; };
+		379BCD2C202A00F700450632 /* AnyKeyPath.extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyKeyPath.extension.swift; sourceTree = "<group>"; };
+		379BCD2E202A016600450632 /* Continuum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Continuum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +79,11 @@
 		379BCD112029FF9600450632 /* Continuum */ = {
 			isa = PBXGroup;
 			children = (
+				379BCD29202A009E00450632 /* Internal */,
 				379BCD122029FF9600450632 /* Continuum.h */,
 				379BCD132029FF9600450632 /* Info.plist */,
+				379BCD2A202A00AE00450632 /* Wrappable.swift */,
+				379BCD2E202A016600450632 /* Continuum.swift */,
 			);
 			path = Continuum;
 			sourceTree = "<group>";
@@ -84,6 +95,15 @@
 				379BCD1F2029FF9600450632 /* Info.plist */,
 			);
 			path = ContinuumTests;
+			sourceTree = "<group>";
+		};
+		379BCD29202A009E00450632 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				379BCD2C202A00F700450632 /* AnyKeyPath.extension.swift */,
+				3700DEDF202A17630010408B /* PThreadMutex.swift */,
+			);
+			path = Internal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +168,7 @@
 				TargetAttributes = {
 					379BCD0E2029FF9600450632 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					379BCD172029FF9600450632 = {
@@ -196,6 +217,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3700DEE0202A17630010408B /* PThreadMutex.swift in Sources */,
+				379BCD2D202A00F700450632 /* AnyKeyPath.extension.swift in Sources */,
+				379BCD2F202A016600450632 /* Continuum.swift in Sources */,
+				379BCD2B202A00AE00450632 /* Wrappable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +359,7 @@
 		379BCD242029FF9600450632 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -346,6 +372,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.Continuum";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +381,7 @@
 		379BCD252029FF9600450632 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +402,7 @@
 		379BCD272029FF9600450632 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ContinuumTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +416,7 @@
 		379BCD282029FF9600450632 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ContinuumTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

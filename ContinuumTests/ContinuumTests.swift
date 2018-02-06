@@ -9,28 +9,267 @@
 import XCTest
 @testable import Continuum
 
-class ContinuumTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+final class ContinuumTests: XCTestCase {
+
+    func testBindingSameValueType() {
+        class Dog {
+            var bark = "Bow wow"
         }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
     }
-    
+
+    func testBindingLeftValueTypeIsOptional() {
+        class Dog {
+            var bark: String? = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testBindingRightValueTypeIsOptional() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound: String? = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testBindingLeftValueTypeIsImplicitlyUnwrappedOptional() {
+        class Dog {
+            var bark: String! = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testBindingRightValueTypeIsImplicitlyUnwrappedOptional() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound: String! = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testCancelObserving() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        let observer = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        observer.cancel()
+
+        dog.bark = "Woof Woof"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testCancelObservingByDeinit() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        let center = NotificationCenter()
+        var bag = ContinuumBag()
+        center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+            .disposed(by: bag)
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+
+        bag = ContinuumBag()
+
+        dog.bark = "Woof Woof"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+    }
+
+    func testMultipleBinding() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        class Sheep {
+            var sound = "Baa Baa"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+        let sheep = Sheep()
+
+        XCTAssertEqual(cat.sound, "Meow")
+        XCTAssertEqual(sheep.sound, "Baa Baa")
+
+        let center = NotificationCenter()
+        _ = center.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+        _ = center.continuum.observe(dog, \.bark, bindTo: sheep, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+        XCTAssertEqual(sheep.sound, "Bow wow")
+
+        dog.bark = "Meow"
+        center.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Meow")
+        XCTAssertEqual(sheep.sound, "Meow")
+    }
+
+    func testMultipleNotificationCenter() {
+        class Dog {
+            var bark = "Bow wow"
+        }
+
+        class Cat {
+            var sound = "Meow"
+        }
+
+        class Sheep {
+            var sound = "Baa Baa"
+        }
+
+        let dog = Dog()
+        let cat = Cat()
+        let sheep = Sheep()
+
+        XCTAssertEqual(cat.sound, "Meow")
+        XCTAssertEqual(sheep.sound, "Baa Baa")
+
+        let center1 = NotificationCenter()
+        let center2 = NotificationCenter()
+        _ = center1.continuum.observe(dog, \.bark, bindTo: cat, \.sound)
+        _ = center2.continuum.observe(dog, \.bark, bindTo: sheep, \.sound)
+
+        XCTAssertEqual(cat.sound, "Bow wow")
+        XCTAssertEqual(sheep.sound, "Bow wow")
+
+        dog.bark = "Woof Woof"
+
+        center1.continuum.post(keyPath: \Dog.bark)
+
+        XCTAssertEqual(cat.sound, "Woof Woof")
+        XCTAssertEqual(sheep.sound, "Bow wow")
+    }
 }
