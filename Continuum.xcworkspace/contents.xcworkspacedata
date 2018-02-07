@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Continuum.playground">
+   </FileRef>
+   <FileRef
       location = "group:Continuum.xcodeproj">
    </FileRef>
 </Workspace>
