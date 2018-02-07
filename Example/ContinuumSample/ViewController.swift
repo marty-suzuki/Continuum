@@ -15,14 +15,24 @@ final class ViewController: UIViewController {
     @IBOutlet private weak var incrementButton: UIButton!
     @IBOutlet private weak var decrementButton: UIButton!
 
-    private let viewModel = ViewModel()
+    private lazy var viewModel = ViewModel(center: self.center, bag: bag)
+
+    private let center = NotificationCenter()
+    private let bag = ContinuumBag()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         viewModel.observe(\.count, bindTo: countLabel, \.text)
-        viewModel.observe(\.decrementAlpha, bindTo: decrementButton, \.alpha)
-        viewModel.observe(\.isDecrementEnabled, bindTo: decrementButton, \.isEnabled)
+
+        center.continuum
+            .observe(viewModel.decrementAlpha, bindTo: decrementButton, \.alpha)
+            .disposed(by: bag)
+
+        center.continuum
+            .observe(viewModel.isDecrementEnabled, bindTo: decrementButton, \.isEnabled)
+            .disposed(by: bag)
     }
 
     @IBAction private func incrementButtonTapped(_ sender: UIButton) {
@@ -35,13 +45,11 @@ final class ViewController: UIViewController {
 }
 
 final class ViewModel {
-    private(set) var isDecrementEnabled = false {
-        didSet { center.continuum.post(keyPath: \ViewModel.isDecrementEnabled) }
-    }
+    let isDecrementEnabled: Constant<Bool>
+    private let _isDecrementEnabled = Variable(value: false)
 
-    private(set) var decrementAlpha: CGFloat = 0.5 {
-        didSet { center.continuum.post(keyPath: \ViewModel.decrementAlpha) }
-    }
+    let decrementAlpha: Constant<CGFloat>
+    private let _decrementAlpha = Variable<CGFloat>(value: 0.5)
 
     private(set) var count: String = "" {
         didSet { center.continuum.post(keyPath: \ViewModel.count) }
@@ -50,14 +58,19 @@ final class ViewModel {
     private var _count: Int = 0 {
         didSet {
             count = String(describing: _count)
-            isDecrementEnabled = _count > 0
-            decrementAlpha = isDecrementEnabled ? 1 : 0.5
+            _isDecrementEnabled.value = _count > 0
+            _decrementAlpha.value = _isDecrementEnabled.value ? 1 : 0.5
         }
     }
-    private let center = NotificationCenter()
-    private let bag = ContinuumBag()
 
-    init() {
+    let center: NotificationCenter
+    let bag: ContinuumBag
+
+    init(center: NotificationCenter, bag: ContinuumBag) {
+        self.center = center
+        self.bag = bag
+        self.isDecrementEnabled = Constant(variable: _isDecrementEnabled)
+        self.decrementAlpha = Constant(variable: _decrementAlpha)
         setInitialValue()
     }
 

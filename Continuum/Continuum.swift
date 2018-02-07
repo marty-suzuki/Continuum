@@ -98,11 +98,11 @@ extension NotificationCenterContinuum {
         return _observe(source, keyPath1, on: queue, bindTo: target, keyPath2)
     }
 
-    private func _observe<O1: AnyObject, V1, O2: AnyObject, V2>(_ source: O1,
-                                                                _ sourceKeyPath: KeyPath<O1, V1>,
+    private func _observe<S: AnyObject, V1, T: AnyObject, V2>(_ source: S,
+                                                                _ sourceKeyPath: KeyPath<S, V1>,
                                                                 on queue: OperationQueue? = nil,
-                                                                bindTo target: O2,
-                                                                _ targetKeyPath: ReferenceWritableKeyPath<O2, V2>) -> Observer {
+                                                                bindTo target: T,
+                                                                _ targetKeyPath: ReferenceWritableKeyPath<T, V2>) -> Observer {
         let handler: () -> () = { [weak source, weak target] in
             guard
                 let source = source,
@@ -114,6 +114,47 @@ extension NotificationCenterContinuum {
 
         handler()
         let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
+    }
+}
+
+extension NotificationCenterContinuum {
+    public func observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
+                                                                on queue: OperationQueue? = nil,
+                                                                bindTo target: T,
+                                                                _ keyPath2: ReferenceWritableKeyPath<T, V>) -> Observer where S.E == V {
+        return _observe(source, on: queue, bindTo: target, keyPath2)
+    }
+
+    public func observe<S: ValueRepresentable, T: AnyObject, V: Wrappable>(_ source: S,
+                                                                           on queue: OperationQueue? = nil,
+                                                                           bindTo target: T,
+                                                                           _ keyPath2: ReferenceWritableKeyPath<T, V>) -> Observer where S.E == V.Wrapped {
+        return _observe(source, on: queue, bindTo: target, keyPath2)
+    }
+
+    public func observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
+                                                                on queue: OperationQueue? = nil,
+                                                                bindTo target: T,
+                                                                _ keyPath2: ReferenceWritableKeyPath<T, V>) -> Observer where S.E: Wrappable, S.E.Wrapped == V {
+        return _observe(source, on: queue, bindTo: target, keyPath2)
+    }
+
+    private func _observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
+                                                                    on queue: OperationQueue? = nil,
+                                                                    bindTo target: T,
+                                                                    _ targetKeyPath: ReferenceWritableKeyPath<T, V>) -> Observer {
+        let handler: () -> () = { [weak source, weak target] in
+            guard
+                let target = target,
+                let value = source?.value as? V
+            else { return }
+            target[keyPath: targetKeyPath] = value
+        }
+
+        handler()
+        (source as? NotificationCenterSettable)?.setCenter(center)
+        let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
 }

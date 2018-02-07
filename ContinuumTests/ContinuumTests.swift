@@ -272,4 +272,8 @@ final class ContinuumTests: XCTestCase {
         XCTAssertEqual(cat.sound, "Woof Woof")
         XCTAssertEqual(sheep.sound, "Bow wow")
     }
+
+    func testHoge() {
+        
+    }
 }
