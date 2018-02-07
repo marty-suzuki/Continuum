@@ -67,7 +67,7 @@ center.continuum.post(keyPath: \ViewModel.text)
 ### Lifecycle of ContinuumObserver
 
 `func observe(_:,_:,on:,bindTo:,_:)` returns `ContinuumObserver`.
-If `func cancel()` of `ContinuumObserver`, observation is cancelled.
+If `func cancel()` of `ContinuumObserver` called, observation is cancelled.
 
 ```swift
 let observer = center.continuum.observe(viewModel, \.text, on: .main, bindTo: label, \.text)
@@ -87,7 +87,21 @@ bag = ContinumeBag() // previous instance of ContinumeBag is released and observ
 
 ## Example
 
+### Playground
+
+You can try **Continuum** with Playground.
+Open Continuum.xcworkspace and run build.
+You can try like this.
+
+![](./Images/playground.png)
+
+### Example Project
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Open ContinuumSample.xcworkspace and run build.
+You can try a simple counter app like this.
+
+![](./Images/example.png)
 
 ## Requirements
 
