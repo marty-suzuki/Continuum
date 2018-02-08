@@ -11,7 +11,7 @@ import XCTest
 
 final class ContinuumTests: XCTestCase {
 
-    func testBindingSameValueType() {
+    func testBindingWhenSameValueType() {
         class Dog {
             var bark = "Bow wow"
         }
@@ -36,7 +36,7 @@ final class ContinuumTests: XCTestCase {
         XCTAssertEqual(cat.sound, "Meow")
     }
 
-    func testBindingLeftValueTypeIsOptional() {
+    func testBindingWhenLeftValueTypeIsOptional() {
         class Dog {
             var bark: String? = "Bow wow"
         }
@@ -61,7 +61,7 @@ final class ContinuumTests: XCTestCase {
         XCTAssertEqual(cat.sound, "Meow")
     }
 
-    func testBindingRightValueTypeIsOptional() {
+    func testBindingWhenRightValueTypeIsOptional() {
         class Dog {
             var bark = "Bow wow"
         }
@@ -86,7 +86,7 @@ final class ContinuumTests: XCTestCase {
         XCTAssertEqual(cat.sound, "Meow")
     }
 
-    func testBindingLeftValueTypeIsImplicitlyUnwrappedOptional() {
+    func testBindingWhenLeftValueTypeIsImplicitlyUnwrappedOptional() {
         class Dog {
             var bark: String! = "Bow wow"
         }
@@ -111,7 +111,7 @@ final class ContinuumTests: XCTestCase {
         XCTAssertEqual(cat.sound, "Meow")
     }
 
-    func testBindingRightValueTypeIsImplicitlyUnwrappedOptional() {
+    func testBindingWhenRightValueTypeIsImplicitlyUnwrappedOptional() {
         class Dog {
             var bark = "Bow wow"
         }
@@ -271,9 +271,5 @@ final class ContinuumTests: XCTestCase {
 
         XCTAssertEqual(cat.sound, "Woof Woof")
         XCTAssertEqual(sheep.sound, "Bow wow")
-    }
-
-    func testHoge() {
-        
     }
 }

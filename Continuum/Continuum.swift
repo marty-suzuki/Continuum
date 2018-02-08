@@ -98,6 +98,46 @@ extension NotificationCenterContinuum {
         return _observe(source, keyPath1, on: queue, bindTo: target, keyPath2)
     }
 
+    public func observe<S: AnyObject, V1: Wrappable, T: AnyObject, V2: Wrappable>(_ source: S,
+                                                                       _ keyPath1: KeyPath<S, V1>,
+                                                                       on queue: OperationQueue? = nil,
+                                                                       bindTo target: T,
+                                                                       _ keyPath2: ReferenceWritableKeyPath<T, V2>) -> Observer where V1.Wrapped == V2.Wrapped {
+        return _observe(source, keyPath1, on: queue, bindTo: target, keyPath2)
+    }
+
+    /// Binds Optional or ImplicitlyUnwrappedOptional to Optional.
+    public func observe<S: AnyObject, V1: Wrappable, T: AnyObject, V2>(_ source: S,
+                                                                       _ sourceKeyPath: KeyPath<S, V1>,
+                                                                       on queue: OperationQueue? = nil,
+                                                                       bindTo target: T,
+                                                                       _ targetKeyPath: ReferenceWritableKeyPath<T, Optional<V2>>) -> Observer {
+        let handler: () -> () = { [weak source, weak target] in
+            guard let source = source, let target = target else { return }
+            target[keyPath: targetKeyPath] = source[keyPath: sourceKeyPath] as? V2
+        }
+
+        handler()
+        let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
+    }
+
+    /// Binds Optional or ImplicitlyUnwrappedOptional to ImplicitlyUnwrappedOptional.
+    public func observe<S: AnyObject, V1: Wrappable, T: AnyObject, V2>(_ source: S,
+                                                                       _ sourceKeyPath: KeyPath<S, V1>,
+                                                                       on queue: OperationQueue? = nil,
+                                                                       bindTo target: T,
+                                                                       _ targetKeyPath: ReferenceWritableKeyPath<T, ImplicitlyUnwrappedOptional<V2>>) -> Observer {
+        let handler: () -> () = { [weak source, weak target] in
+            guard let source = source, let target = target else { return }
+            target[keyPath: targetKeyPath] = source[keyPath: sourceKeyPath] as? V2
+        }
+
+        handler()
+        let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
+    }
+
     private func _observe<S: AnyObject, V1, T: AnyObject, V2>(_ source: S,
                                                                 _ sourceKeyPath: KeyPath<S, V1>,
                                                                 on queue: OperationQueue? = nil,
@@ -138,6 +178,38 @@ extension NotificationCenterContinuum {
                                                                 bindTo target: T,
                                                                 _ keyPath2: ReferenceWritableKeyPath<T, V>) -> Observer where S.E: Wrappable, S.E.Wrapped == V {
         return _observe(source, on: queue, bindTo: target, keyPath2)
+    }
+
+    /// Binds Optional or ImplicitlyUnwrappedOptional to Optional.
+    public func observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
+                                                                on queue: OperationQueue? = nil,
+                                                                bindTo target: T,
+                                                                _ keyPath2: ReferenceWritableKeyPath<T, Optional<V>>) -> Observer where S.E: Wrappable, S.E.Wrapped == V {
+        let handler: () -> () = { [weak source, weak target] in
+            guard let target = target, let source = source else { return }
+            target[keyPath: keyPath2] = source.value as? V
+        }
+
+        handler()
+        (source as? NotificationCenterSettable)?.setCenter(center)
+        let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
+    }
+
+    /// Binds Optional or ImplicitlyUnwrappedOptional to ImplicitlyUnwrappedOptional.
+    public func observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
+                                                                on queue: OperationQueue? = nil,
+                                                                bindTo target: T,
+                                                                _ keyPath2: ReferenceWritableKeyPath<T, ImplicitlyUnwrappedOptional<V>>) -> Observer where S.E: Wrappable, S.E.Wrapped == V {
+        let handler: () -> () = { [weak source, weak target] in
+            guard let target = target, let source = source else { return }
+            target[keyPath: keyPath2] = source.value as? V
+        }
+
+        handler()
+        (source as? NotificationCenterSettable)?.setCenter(center)
+        let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
     }
 
     private func _observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
