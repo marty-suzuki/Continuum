@@ -18,7 +18,11 @@ protocol NotificationCenterSettable: class {
     func setCenter(_ center: NotificationCenter)
 }
 
+/// Variable is wrapper for value that has getter / setter.
 public final class Variable<Element>: ValueRepresentable, NotificationCenterSettable {
+    /// Gets or sets current value of variable.
+    ///
+    /// Whenever a new value is set, all the observers are notified of the change.
     public var value: Element {
         set {
             mutex.lock()
@@ -32,12 +36,16 @@ public final class Variable<Element>: ValueRepresentable, NotificationCenterSett
         }
     }
 
+    /// Represents unique Notification.Name for each Variables.
     public let uniqueName = Notification.Name("Continuum.\(UUID().uuidString)")
 
     private var _value: Element
     private let mutex = PThreadMutex()
     private var center: NotificationCenter?
 
+    /// Initializes Variable with initial value.
+    ///
+    /// - parameter value: Initial value.
     public init(value: Element) {
         self._value = value
     }

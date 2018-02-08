@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Represents Optional.
 public protocol Wrappable {
     associatedtype Wrapped
     var value: Wrapped? { get }
