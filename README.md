@@ -13,7 +13,7 @@ final class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
 
-    private lazy var viewModel: ViewModel = ViewModel(center: self.center)
+    private let viewModel: ViewModel = ViewModel()
     private let center = NotificationCenter()
     private let bag = ContinuumBag()
 
@@ -21,29 +21,25 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         center.continuum
-            .observe(viewModel, \.text, on: .main, bindTo: label, \.text)
+            .observe(viewModel.text, on: .main, bindTo: label, \.text)
             .disposed(by: bag)
 
-        viewModel.text = "Binding this text to label.text!"
+        viewModel.text.value = "Binding this text to label.text!"
     }
 }
 
 final class ViewModel {
-    private(set) var text = "" {
-        didSet { center.continuum.post(keyPath: \ViewModel.text) }
-    }
+    let text: Variable<String>
 
-    private let center: NotificationCenter
-
-    init(center: NotificationCenter) {
-        self.center = center
+    init() {
+        self.text = Variable(value: "")
     }
 }
 ```
 
 ## Usage
 
-### Observe object KeyPath and bind it to target KeyPath
+### 1. Observe object KeyPath and bind it to target KeyPath
 
 NotificationCenter's instance has `continuum` property. You can access Continuum functions from it.
 
@@ -55,13 +51,46 @@ let observer = center.continuum.observe(viewModel, \.text, on: .main, bindTo: la
 Above source code means `observe viewModel's text propety and bind that value to label's text property on main thread`.
 If property is observed, current value comes immediately.
 
-### Notify changes with `func post(keyPath:)`
+#### Notify changes with `func post(keyPath:)`
 
 If value changed, notify changes like this.
 
 ```swift
 viewModel.text = "Changed"
 center.continuum.post(keyPath: \ViewModel.text)
+print(label.text) // Changed
+```
+
+### 2. Observe Constant / Variable and bind it to target KeyPath
+
+Constant / Variable are value wrapper. Variable has getter / setter. Constant has only getter.
+
+```swift
+let center = NotificationCenter()
+let text = Variable<String>(value: "")
+let observer = center.continuum.observe(text, on: .main, bindTo: label, \.text)
+```
+
+If property is observed, current value comes immediately.
+
+#### Notify changes with setter of value at Variable
+
+If Variable's value is changed, `func post(name:object:)` is automatically executed.
+
+```swift
+text.value = "Changed"
+print(label.text) // Changed
+```
+
+In addition, if Variable's value is changed, related Constant value is automatically changed.
+
+```swift
+let center = NotificationCenter()
+let variable = Variable<String>(value: "")
+let constant = Constant<String>(variable: variable)
+let observer = center.continuum.observe(constant, on: .main, bindTo: label, \.text)
+variable.value = "Changed"
+print(label.text) // Changed
 ```
 
 ### Lifecycle of ContinuumObserver
