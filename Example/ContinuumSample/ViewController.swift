@@ -16,84 +16,63 @@ final class ViewController: UIViewController {
     @IBOutlet private weak var decrementButton: UIButton!
 
     private let viewModel = ViewModel()
+    private let center = NotificationCenter()
+    private let bag = ContinuumBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel.observe(\.count, bindTo: countLabel, \.text)
-        viewModel.observe(\.decrementAlpha, bindTo: decrementButton, \.alpha)
-        viewModel.observe(\.isDecrementEnabled, bindTo: decrementButton, \.isEnabled)
-    }
+        incrementButton.addTarget(viewModel, action: #selector(ViewModel.increment), for: .touchUpInside)
+        decrementButton.addTarget(viewModel, action: #selector(ViewModel.decrement), for: .touchUpInside)
 
-    @IBAction private func incrementButtonTapped(_ sender: UIButton) {
-        viewModel.increment()
-    }
+        center.continuum
+            .observe(viewModel.count, bindTo: countLabel, \.text)
+            .disposed(by: bag)
 
-    @IBAction private func decrementButtonTapped(_ sender: UIButton) {
-        viewModel.decrement()
+        center.continuum
+            .observe(viewModel.decrementAlpha, bindTo: decrementButton, \.alpha)
+            .disposed(by: bag)
+
+        center.continuum
+            .observe(viewModel.isDecrementEnabled, bindTo: decrementButton, \.isEnabled)
+            .disposed(by: bag)
     }
 }
 
 final class ViewModel {
-    private(set) var isDecrementEnabled = false {
-        didSet { center.continuum.post(keyPath: \ViewModel.isDecrementEnabled) }
-    }
+    let isDecrementEnabled: Constant<Bool>
+    private let _isDecrementEnabled = Variable(value: false)
 
-    private(set) var decrementAlpha: CGFloat = 0.5 {
-        didSet { center.continuum.post(keyPath: \ViewModel.decrementAlpha) }
-    }
+    let decrementAlpha: Constant<CGFloat>
+    private let _decrementAlpha = Variable<CGFloat>(value: 0.5)
 
-    private(set) var count: String = "" {
-        didSet { center.continuum.post(keyPath: \ViewModel.count) }
-    }
+    let count: Constant<String>
+    private let _count = Variable<String>(value: "")
 
-    private var _count: Int = 0 {
+    private var rawCount: Int = 0 {
         didSet {
-            count = String(describing: _count)
-            isDecrementEnabled = _count > 0
-            decrementAlpha = isDecrementEnabled ? 1 : 0.5
+            _count.value = String(describing: rawCount)
+            _isDecrementEnabled.value = rawCount > 0
+            _decrementAlpha.value = _isDecrementEnabled.value ? 1 : 0.5
         }
     }
-    private let center = NotificationCenter()
-    private let bag = ContinuumBag()
 
     init() {
+        self.isDecrementEnabled = Constant(variable: _isDecrementEnabled)
+        self.decrementAlpha = Constant(variable: _decrementAlpha)
+        self.count = Constant(variable: _count)
         setInitialValue()
     }
 
     private func setInitialValue() {
-        _count = 0
+        rawCount = 0
     }
 
-    func increment() {
-        _count += 1
+    @objc func increment() {
+        rawCount += 1
     }
 
-    func decrement() {
-        _count -= 1
-    }
-
-    func observe<T: AnyObject, V>(_ keyPath1: KeyPath<ViewModel, V>,
-                                bindTo target: T,
-                                _ keyPath2: ReferenceWritableKeyPath<T, V>) {
-        center.continuum
-            .observe(self, keyPath1, on: .main, bindTo: target, keyPath2)
-            .disposed(by: bag)
-    }
-
-    func observe<V1, T: AnyObject, V2: Wrappable>(_ keyPath1: KeyPath<ViewModel, V1>,
-                                                  bindTo target: T,
-                                                  _ keyPath2: ReferenceWritableKeyPath<T, V2>) where V1 == V2.Wrapped {
-        center.continuum
-            .observe(self, keyPath1, on: .main, bindTo: target, keyPath2)
-            .disposed(by: bag)
-    }
-
-    func observe<V1: Wrappable, T: AnyObject, V2>(_ keyPath1: KeyPath<ViewModel, V1>,
-                                                  bindTo target: T,
-                                                  _ keyPath2: ReferenceWritableKeyPath<T, V2>) where V1.Wrapped == V2 {
-        center.continuum
-            .observe(self, keyPath1, on: .main, bindTo: target, keyPath2)
-            .disposed(by: bag)
+    @objc func decrement() {
+        rawCount -= 1
     }
 }
