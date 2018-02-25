@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F95662A2042681800039EB2 /* OnValueChangeClosureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9566292042681800039EB2 /* OnValueChangeClosureTests.swift */; };
 		3700DEE0202A17630010408B /* PThreadMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700DEDF202A17630010408B /* PThreadMutex.swift */; };
 		379BCD192029FF9600450632 /* Continuum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379BCD0F2029FF9600450632 /* Continuum.framework */; };
 		379BCD1E2029FF9600450632 /* ContinuumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379BCD1D2029FF9600450632 /* ContinuumTests.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F9566292042681800039EB2 /* OnValueChangeClosureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnValueChangeClosureTests.swift; sourceTree = "<group>"; };
 		3700DEDF202A17630010408B /* PThreadMutex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PThreadMutex.swift; sourceTree = "<group>"; };
 		379BCD0F2029FF9600450632 /* Continuum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Continuum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		379BCD122029FF9600450632 /* Continuum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Continuum.h; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				379BCD1F2029FF9600450632 /* Info.plist */,
 				9DF34AC1202C490A00809EF1 /* VariableTests.swift */,
 				9DF34AC3202C493B00809EF1 /* ConstantTests.swift */,
+				1F9566292042681800039EB2 /* OnValueChangeClosureTests.swift */,
 			);
 			path = ContinuumTests;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			files = (
 				379BCD1E2029FF9600450632 /* ContinuumTests.swift in Sources */,
 				9DF34AC4202C493B00809EF1 /* ConstantTests.swift in Sources */,
+				1F95662A2042681800039EB2 /* OnValueChangeClosureTests.swift in Sources */,
 				9DF34AC2202C490A00809EF1 /* VariableTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
