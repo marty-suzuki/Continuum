@@ -325,7 +325,9 @@ extension NotificationCenterContinuum {
             target[keyPath: keyPath] = value
         }
 
+        // FIXME: need to dispatch on given queue if it's non-nil and different from current queue.
         handler()
+
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
