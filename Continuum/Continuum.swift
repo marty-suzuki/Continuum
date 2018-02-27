@@ -167,7 +167,7 @@ extension NotificationCenterContinuum {
             target[keyPath: targetKeyPath] = source[keyPath: sourceKeyPath] as? V2
         }
 
-        handler()
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
@@ -189,7 +189,7 @@ extension NotificationCenterContinuum {
             target[keyPath: targetKeyPath] = source[keyPath: sourceKeyPath] as? V2
         }
 
-        handler()
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
@@ -208,7 +208,7 @@ extension NotificationCenterContinuum {
             target[keyPath: targetKeyPath] = value
         }
 
-        handler()
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         let observer = center.addObserver(forName: sourceKeyPath.notificationName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
@@ -227,18 +227,6 @@ extension NotificationCenterContinuum {
                                                                 bindTo target: T,
                                                                 _ keyPath: ReferenceWritableKeyPath<T, V>) -> Observer where S.E == V {
         return _observe(source, on: queue, bindTo: target, keyPath)
-    }
-
-    /// Binds source.value to property of target object.
-    ///
-    /// - parameter source: Observed object.
-    /// - parameter queue: Binding execution qeueue.
-    /// - parameter onValueChange: Value handler.
-    /// - returns: Observer that observes a object that confirms ValueRepresentable.
-    public func observe<S: ValueRepresentable, V>(_ source: S,
-                                                  on queue: OperationQueue? = nil,
-                                                  onValueChange: @escaping (V) -> ()) -> Observer where S.E == V {
-        return _observe(source, on: queue, onValueChange: onValueChange)
     }
 
     /// Binds source.value to property of target object.
@@ -285,7 +273,7 @@ extension NotificationCenterContinuum {
             target[keyPath: keyPath] = source.value as? V
         }
 
-        handler()
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
@@ -307,7 +295,7 @@ extension NotificationCenterContinuum {
             target[keyPath: keyPath] = source.value as? V
         }
 
-        handler()
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
@@ -325,32 +313,48 @@ extension NotificationCenterContinuum {
             target[keyPath: keyPath] = value
         }
 
-        // FIXME: need to dispatch on given queue if it's non-nil and different from current queue.
-        handler()
-
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
+    }
+}
+
+extension NotificationCenterContinuum {
+    /// Binds source.value to property of target object.
+    ///
+    /// - parameter source: Observed object.
+    /// - parameter queue: Binding execution qeueue.
+    /// - parameter onValueChange: Value handler.
+    /// - returns: Observer that observes a object that confirms ValueRepresentable.
+    public func observe<S: ValueRepresentable, V>(_ source: S,
+                                                  on queue: OperationQueue? = nil,
+                                                  onValueChange: @escaping (V) -> ()) -> Observer where S.E == V {
+        return _observe(source, on: queue, onValueChange: onValueChange)
     }
 
     private func _observe<S: ValueRepresentable, V>(_ source: S,
                                                     on queue: OperationQueue? = nil,
                                                     onValueChange: @escaping (V) -> ()) -> Observer where S.E == V {
         let handler: () -> () = { [weak source] in
-            guard let value = source?.value else { return }
-            onValueChange(value)
+            guard let source = source else { return }
+            onValueChange(source.value)
         }
 
-        if let _queue = queue, OperationQueue.current != _queue {
-            // only dispatch async if given queue is different from current
-            _queue.addOperation(handler)
-        } else {
-            handler()
-        }
-
+        OperationQueue.addOrExecuteOperation(handler, in: queue)
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
+}
 
+extension OperationQueue {
+    fileprivate static func addOrExecuteOperation(_ operation: @escaping () -> Void,  in queue: OperationQueue?) {
+        if let _queue = queue, current != _queue {
+            // only dispatch async if given queue is different from current
+            _queue.addOperation(operation)
+        } else {
+            operation()
+        }
+    }
 }

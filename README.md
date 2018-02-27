@@ -73,6 +73,20 @@ let observer = center.continuum.observe(text, on: .main, bindTo: label, \.text)
 
 If property is observed, current value comes immediately.
 
+### 3. Observe Constant / Variable and bind it to closure
+
+Constant / Variable are value wrapper. Variable has getter / setter. Constant has only getter.
+
+```swift
+let center = NotificationCenter()
+let text = Variable<String>(value: "")
+let observer = center.continuum.observe(text, on: .main, onValueChange: { value in
+    // something to do
+})
+```
+
+If property is observed, current value comes immediately.
+
 #### Notify changes with setter of value at Variable
 
 If Variable's value is changed, `func post(name:object:)` is automatically executed.

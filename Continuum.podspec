@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Continuum'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'NotificationCenter based Lightweight UI / AnyObject binder.'
 
 # This description is used to generate tags and improve search results.
