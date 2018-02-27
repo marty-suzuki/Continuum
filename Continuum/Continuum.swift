@@ -233,6 +233,18 @@ extension NotificationCenterContinuum {
     ///
     /// - parameter source: Observed object.
     /// - parameter queue: Binding execution qeueue.
+    /// - parameter onValueChange: Value handler.
+    /// - returns: Observer that observes a object that confirms ValueRepresentable.
+    public func observe<S: ValueRepresentable, V>(_ source: S,
+                                                  on queue: OperationQueue? = nil,
+                                                  onValueChange: @escaping (V) -> ()) -> Observer where S.E == V {
+        return _observe(source, on: queue, onValueChange: onValueChange)
+    }
+
+    /// Binds source.value to property of target object.
+    ///
+    /// - parameter source: Observed object.
+    /// - parameter queue: Binding execution qeueue.
     /// - parameter target: Binding target.
     /// - parameter keyPath: KeyPath for target that confirms Wrappable.
     /// - returns: Observer that observes a ValueRepresentable.
@@ -302,20 +314,43 @@ extension NotificationCenterContinuum {
     }
 
     private func _observe<S: ValueRepresentable, T: AnyObject, V>(_ source: S,
-                                                                    on queue: OperationQueue? = nil,
-                                                                    bindTo target: T,
-                                                                    _ keyPath: ReferenceWritableKeyPath<T, V>) -> Observer {
+                                                                  on queue: OperationQueue? = nil,
+                                                                  bindTo target: T,
+                                                                  _ keyPath: ReferenceWritableKeyPath<T, V>) -> Observer {
         let handler: () -> () = { [weak source, weak target] in
             guard
                 let target = target,
                 let value = source?.value as? V
-            else { return }
+                else { return }
             target[keyPath: keyPath] = value
         }
 
+        // FIXME: need to dispatch on given queue if it's non-nil and different from current queue.
         handler()
+
         (source as? NotificationCenterSettable)?.setCenter(center)
         let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
         return Observer(rawObserver: observer, center: center)
     }
+
+    private func _observe<S: ValueRepresentable, V>(_ source: S,
+                                                    on queue: OperationQueue? = nil,
+                                                    onValueChange: @escaping (V) -> ()) -> Observer where S.E == V {
+        let handler: () -> () = { [weak source] in
+            guard let value = source?.value else { return }
+            onValueChange(value)
+        }
+
+        if let _queue = queue, OperationQueue.current != _queue {
+            // only dispatch async if given queue is different from current
+            _queue.addOperation(handler)
+        } else {
+            handler()
+        }
+
+        (source as? NotificationCenterSettable)?.setCenter(center)
+        let observer = center.addObserver(forName: source.uniqueName, object: nil, queue: queue) { _ in handler() }
+        return Observer(rawObserver: observer, center: center)
+    }
+
 }
